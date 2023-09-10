@@ -102,21 +102,21 @@ class youtube_downloader_app(QMainWindow):
             popup.setStyleSheet("font-size:13px;")
             popup.exec_()
         else:
-            youtubeObject = YouTube(url_val) 
-            youtubeObject = youtubeObject.streams.get_by_resolution(rate_val)
             try:
+                youtubeObject = YouTube(url_val) 
+                youtubeObject = youtubeObject.streams.get_by_resolution(rate_val)
                 youtubeObject.download()
+
+                popup.setWindowTitle("Success")
+                popup.setText("Download Completed!")
+                popup.setStyleSheet("font-size:13px;")
+                popup.exec_()
             except Exception as e:
                 popup.setWindowTitle("Error Information")
                 popup.setIcon(QMessageBox.Information)
                 popup.setText(str(e))
                 popup.setStyleSheet("font-size:13px;")
                 popup.exec_()
-            
-            popup.setWindowTitle("Success")
-            popup.setText("Download Completed!")
-            popup.setStyleSheet("font-size:13px;")
-            popup.exec_()
 
 
 
